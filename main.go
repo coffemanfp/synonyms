@@ -15,12 +15,12 @@ func main() {
 		log.Fatalln("no Big Hugh Thesaurus api key found")
 	}
 
-	thesaurus := &thesaurus.BigHugh{APIKey: apiKey}
+	thesaurusClient := &thesaurus.BigHugh{APIKey: apiKey}
 	s := bufio.NewScanner(os.Stdin)
 
 	for s.Scan() {
 		word := s.Text()
-		syns, err := thesaurus.Synonyms(word)
+		syns, err := thesaurusClient.Synonyms(word)
 		if err != nil {
 			err = fmt.Errorf("failed when looking for synonyms for \"%s\":\n%s", word, err)
 			log.Fatalln(err)
